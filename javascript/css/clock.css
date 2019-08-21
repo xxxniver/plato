@@ -1,0 +1,84 @@
+body,ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.clock{
+    position: relative;
+    width: 230px;
+    height: 230px;
+    margin: 100px auto;
+    border-radius: 40px;
+    background-color: #000000;
+    /*overflow: hidden;*/
+}
+.dial{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 210px;
+    height:210px;
+    border-radius: 50%;
+    background-color: #fff;
+    /*margin: 15px auto;*/
+}
+.num{
+    position: absolute;
+    top:0px;
+    left: 50%;
+    width: 30px;
+    margin-left: -15px;
+    text-align: center;
+    font-weight: bold;
+    transform-origin: 50% 100px;
+}
+span{
+    display: inline-block;
+}
+.point{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -3px;
+    margin-top: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #000;
+}
+.hour{
+    position: absolute;
+    left: 50%;
+    top: 45px;
+    margin-left: -2px;
+    width: 4px;
+    height: 70px;
+    background-color: black;
+    transform-origin: 2px 70px;
+    transform: rotate(90deg);
+}
+.min{
+     position: absolute;
+     left: 50%;
+     top: 25px;
+     margin-left: -2px;
+     width: 4px;
+     height: 90px;
+     background-color: black;
+     transform-origin: 2px 90px;
+     transform: rotate(30deg);
+ }
+.sec{
+    position: absolute;
+    left: 50%;
+    top: 25px;
+    margin-left: -1px;
+    width: 2px;
+    height: 100px;
+    background-color: red;
+    transform-origin: center 90px;
+    transform: rotate(0deg);
+}

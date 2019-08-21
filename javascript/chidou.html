@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>吃豆豆</title>
+    <link rel="stylesheet" href="./css/iconfont.css">
+    <style>
+        body{
+            background-color: black;
+        }
+        #word{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /*width: 100px;*/
+            /*height: 100px;*/
+            /*background-color: antiquewhite;*/
+            /*知道宽高的居中*/
+            /*margin-left: -50px;*/
+            /*margin-top: -50px;*/
+            /*不知道宽高*/
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 0em;
+        }
+        #word > div{
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+        }
+        .wall{
+            background-image:url("./img/wall.png") ;
+        }
+        .coin{
+            background-image: url("./img/coin.png");
+        }
+        .man{
+            background-image: url("./img/pacman.png");
+        }
+        .ground{
+            background-color: black;
+        }
+        .man.left{
+            background-image: url("./img/pacman-left.png")
+        }
+        .man.up{
+            background-image: url("./img/pacman-up.png ")
+        }
+        .man.down{
+            background-image: url("./img/pacman-down.png")
+        }
+    </style>
+</head>
+<body>
+    <div id="word">
+
+    </div>
+    <script>
+        //1 <div class="wall">
+        //2 <div class="coin">
+        //3 <div class="man">
+        //4 <div class="ground">
+        var map = [
+            [1,1,1,1,1,1,1,1],
+            [1,4,2,2,3,2,4,1],
+            [1,1,1,1,1,1,1,1],
+        ];
+        var man = {
+            x:1,
+            y:4,
+            dir:"left"
+        };
+        // 游戏界面渲染
+        function draw() {
+            var html;
+            var word = document.getElementById("word");
+            for (var i=0;i<map.length;i++){
+                for (var j=0;j<map[i].length;j++){
+                    if(map[i][j] === 1)
+                    {
+                        html += '<div class="wall"></div>'
+                    }
+                    else if(map[i][j] === 2){
+                        html += '<div class="coin"></div>'
+                    }
+                    else if(map[i][j] === 3){
+                        html += '<div class="man '+ man.dir + '"></div>'
+                    }
+                    else if(map[i][j] === 4){
+                        html += '<div class="ground"></div>'
+                    }
+                }
+                html += '<br>'
+            }
+            word.innerHTML = html;
+        }
+        draw();
+        // 人物移动
+        document.onkeydown = function (event) {
+            if (event.code === "ArrowRight"){
+                man.dir = "right";
+                if (map[man.x][man.y+1] !== 1) {
+                    map[man.x][man.y] = 4;
+                    man.y = man.y + 1;
+                    map[man.x][man.y] = 3;
+                }
+
+            }
+            else if (event.code === "ArrowLeft"){
+                man.dir = "left";
+                if (map[man.x][man.y-1] !== 1){
+                    map[man.x][man.y] = 4;
+                    man.y = man.y - 1;
+                    map[man.x][man.y] = 3;
+                }
+
+            }
+            else if (event.code === "ArrowDown"){
+                man.dir = "down";
+                if (map[man.x+1][man.y] !== 1){
+                    map[man.x][man.y] = 4;
+                    man.x = man.x + 1;
+                    map[man.x][man.y] = 3;
+                }
+
+            }
+            else if (event.code === "ArrowUp"){
+                man.dir = "up";
+                if (map[man.x-1][man.y] !== 1){
+                    map[man.x][man.y] = 4;
+                    man.x = man.x - 1;
+                    map[man.x][man.y] = 3;
+                }
+
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
+
